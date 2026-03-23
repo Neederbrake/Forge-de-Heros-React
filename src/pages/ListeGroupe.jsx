@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getParties } from '../api/api.js';
 
 function ListeGroupe() {
-  const [parties, setParties] = useState([]);
+  const [groups, setGroups] = useState([]);
   const [onlyAvailable, setOnlyAvailable] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -18,7 +18,7 @@ function ListeGroupe() {
       try {
         const data = await getParties();
         if (active) {
-          setParties(data);
+          setGroups(data);
         }
       } catch {
         if (active) {
@@ -38,12 +38,12 @@ function ListeGroupe() {
     };
   }, []);
 
-  const displayedParties = useMemo(() => {
+  const displayedGroups = useMemo(() => {
     if (!onlyAvailable) {
-      return parties;
+      return groups;
     }
-    return parties.filter((p) => p.placesRestantes > 0);
-  }, [parties, onlyAvailable]);
+    return groups.filter((p) => p.remainingPlaces > 0);
+  }, [groups, onlyAvailable]);
 
   return (
     <section>
@@ -62,18 +62,18 @@ function ListeGroupe() {
       {error ? <p className="error">{error}</p> : null}
 
       <ul className="list">
-        {displayedParties.map((party) => (
-          <li key={party.id} className="card">
-            <Link to={`/groupes/${party.id}`}>
-              <strong>{party.nom}</strong>
+        {displayedGroups.map((group) => (
+          <li key={group.id} className="card">
+            <Link to={`/groupes/${group.id}`}>
+              <strong>{group.name}</strong>
             </Link>
-            <p>Membres: {party.membersCount}</p>
-            <p>Places restantes: {party.placesRestantes}</p>
+            <p>Membres: {group.membersCount}</p>
+            <p>Places restantes: {group.remainingPlaces}</p>
           </li>
         ))}
       </ul>
 
-      {!loading && displayedParties.length === 0 ? <p>Aucun groupe a afficher.</p> : null}
+      {!loading && displayedGroups.length === 0 ? <p>Aucun groupe a afficher.</p> : null}
     </section>
   );
 }

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getPartyById } from '../api/api.js';
+import { getPartiesById } from '../api/api.js';
 
 function DetailGroupe() {
   const { id } = useParams();
-  const [party, setParty] = useState(null);
+  const [group, setGroup] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -16,9 +16,9 @@ function DetailGroupe() {
       setError('');
 
       try {
-        const data = await getPartyById(id);
+        const data = await getPartiesById(id);
         if (active) {
-          setParty(data);
+          setGroup(data);
         }
       } catch {
         if (active) {
@@ -46,23 +46,22 @@ function DetailGroupe() {
       {loading ? <p>Chargement...</p> : null}
       {error ? <p className="error">{error}</p> : null}
 
-      {party && !loading ? (
+      {group && !loading ? (
         <>
-          <h3>{party.nom}</h3>
-          <p>{party.description}</p>
-          <p>Places totales: {party.maxPlaces}</p>
-          <p>Nombre de membres: {party.membersCount}</p>
-          <p>Places restantes: {party.placesRestantes}</p>
+          <h3>{group.name}</h3>
+          <p>{group.description}</p>
+          <p>Places totales: {group.maxPlaces}</p>
+          <p>Nombre de membres: {group.membersCount}</p>
+          <p>Places restantes: {group.remainingPlaces}</p>
 
           <h4>Membres</h4>
-          {party.members.length === 0 ? (
+          {group.members.length === 0 ? (
             <p>Aucun membre</p>
           ) : (
             <ul>
-              {party.members.map((member, index) => {
-                const memberId = member.id ?? member.personnage_id;
+              {group.members.map((member, index) => {
+                const memberId = member.id ?? member.character_id;
                 const memberName =
-                  member.nom ??
                   member.name ??
                   member.pseudo ??
                   (memberId ? `Personnage #${memberId}` : `Membre ${index + 1}`);
