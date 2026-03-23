@@ -1,5 +1,7 @@
 
 Lancer le projet
+npm install 
+
 npm run dev
 
 
