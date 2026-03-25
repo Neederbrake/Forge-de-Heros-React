@@ -118,7 +118,7 @@ function CharacterDetail() {
               <h4 className="character-detail-skills-title">Compétences</h4>
               <ul className="character-detail-skills-list">
                 {character.skills.map((skill, index) => {
-                  const skillName = skill.nom ?? skill.name ?? `Compétence ${index + 1}`;
+                  const skillName = skill.nom ?? skill.name ?? `Skill ${index + 1}`;
                   const skillDesc = skill.description ?? '';
                   return (
                     <li key={`${skillName}-${index}`} className="character-detail-skill-item">
@@ -138,7 +138,7 @@ function CharacterDetail() {
               <ul className="character-detail-groups-list">
                 {character.groups.map((group, index) => {
                   const groupId = group.id ?? group.group_id;
-                  const groupName = group.nom ?? group.name ?? `Groupe #${groupId}`;
+                  const groupName = group.nom ?? group.name ?? `Group #${groupId}`;
 
                   return (
                     <li key={`${groupId ?? 'g'}-${index}`} className="character-detail-group-item">

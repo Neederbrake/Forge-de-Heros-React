@@ -65,7 +65,7 @@ function GroupDetail() {
                 const memberName =
                   member.name ??
                   member.pseudo ??
-                  (memberId ? `Personnage #${memberId}` : `Membre ${index + 1}`);
+                  (memberId ? `Character #${memberId}` : `Member ${index + 1}`);
 
                 return (
                   <li key={`${memberId ?? 'm'}-${index}`} className="group-detail-member-item">

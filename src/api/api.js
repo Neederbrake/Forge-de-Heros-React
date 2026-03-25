@@ -63,8 +63,8 @@ function normalizeGroup(rawGroup) {
 
   return {
     id: pickFirst(rawGroup, ['id', 'Id'], null),
-    name: pickFirst(rawGroup, ['nom', 'name', 'Name'], 'Groupe sans nom'),
-    description: pickFirst(rawGroup, ['description', 'Description'], 'Aucune description'),
+    name: pickFirst(rawGroup, ['nom', 'name', 'Name'], 'Unnamed Group'),
+    description: pickFirst(rawGroup, ['description', 'Description'], 'No description'),
     maxPlaces,
     membersCount,
     remainingPlaces: Math.max(maxPlaces - membersCount, 0),
@@ -93,23 +93,23 @@ function normalizeCharacter(char) {
 
   const raceName =
     typeof rawRace === 'object' && rawRace !== null
-      ? pickFirst(rawRace, ['name', 'nom'], 'Pas de race')
-      : rawRace ?? 'Pas de race';
+      ? pickFirst(rawRace, ['name', 'nom'], 'No race')
+      : rawRace ?? 'No race';
 
   const className =
     typeof rawClass === 'object' && rawClass !== null
-      ? pickFirst(rawClass, ['name', 'nom'], 'Pas de classe')
-      : rawClass ?? 'Pas de classe';
+      ? pickFirst(rawClass, ['name', 'nom'], 'No class')
+      : rawClass ?? 'No class';
 
   return {
     id: pickFirst(char, ['id', 'Id'], null),
-    name: pickFirst(char, ['nom', 'name', 'Name'], 'Personnage sans nom'),
+    name: pickFirst(char, ['nom', 'name', 'Name'], 'Unnamed Character'),
     avatar: avatarCandidates[0] ?? null,
     avatarCandidates,
     class: className,
     race: raceName,
     level: toNumber(pickFirst(char, ['niveau', 'level', 'Level'], 1), 1),
-    description: char.description ?? 'Aucune description',
+    description: char.description ?? 'No description',
     stats: {
       health: toNumber(pickFirst(char, ['healthPoints', 'HealthPoints'], pickFirst(stats, ['hp', 'health'], 0)), 0),
       mana: toNumber(pickFirst(char, ['mana', 'Mana'], pickFirst(stats, ['mana'], 0)), 0),
