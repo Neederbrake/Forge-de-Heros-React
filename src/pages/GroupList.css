@@ -1,0 +1,41 @@
+.group-list-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.group-list-error {
+  color: #b00020;
+  padding: 12px;
+  background-color: #ffebee;
+  border-radius: 4px;
+  margin: 12px 0;
+}
+
+.group-list-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+
+.group-list-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.group-list-link {
+  color: #1976d2;
+  text-decoration: none;
+}

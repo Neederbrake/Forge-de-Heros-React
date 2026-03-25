@@ -1,0 +1,68 @@
+.character-list-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.character-list-filter-input,
+.character-list-filter-select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+}
+
+.character-list-error {
+  color: #b00020;
+  padding: 12px;
+  background-color: #ffebee;
+  border-radius: 4px;
+  margin: 12px 0;
+}
+
+.character-list-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+
+.character-list-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.character-list-avatar {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.character-list-link {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.character-list-badge {
+  display: inline-block;
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}

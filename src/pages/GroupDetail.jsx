@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getPartiesById } from '../api/api.js';
+import { getGroupById } from '../api/api.js';
+import './GroupDetail.css';
 
-function DetailGroupe() {
+function GroupDetail() {
   const { id } = useParams();
   const [group, setGroup] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ function DetailGroupe() {
       setError('');
 
       try {
-        const data = await getPartiesById(id);
+        const data = await getGroupById(id);
         if (active) {
           setGroup(data);
         }
@@ -40,11 +41,11 @@ function DetailGroupe() {
 
   return (
     <section>
-      <Link to="/groupes">Retour a la liste</Link>
+      <Link to="/parties" className="group-detail-back-link">Retour a la liste</Link>
       <h2>Detail du groupe</h2>
 
       {loading ? <p>Chargement...</p> : null}
-      {error ? <p className="error">{error}</p> : null}
+      {error ? <p className="group-detail-error">{error}</p> : null}
 
       {group && !loading ? (
         <>
@@ -58,7 +59,7 @@ function DetailGroupe() {
           {group.members.length === 0 ? (
             <p>Aucun membre</p>
           ) : (
-            <ul>
+            <ul className="group-detail-members-list">
               {group.members.map((member, index) => {
                 const memberId = member.id ?? member.character_id;
                 const memberName =
@@ -67,15 +68,11 @@ function DetailGroupe() {
                   (memberId ? `Personnage #${memberId}` : `Membre ${index + 1}`);
 
                 return (
-                  <li key={`${memberId ?? 'm'}-${index}`}>
+                  <li key={`${memberId ?? 'm'}-${index}`} className="group-detail-member-item">
                     {memberId ? (
-                      <a
-                        href={`http://127.0.0.1:8000/api/v1/personnages/${memberId}`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
+                      <Link to={`/characters/${memberId}`} className="group-detail-link">
                         {memberName}
-                      </a>
+                      </Link>
                     ) : (
                       <span>{memberName}</span>
                     )}
@@ -90,4 +87,4 @@ function DetailGroupe() {
   );
 }
 
-export default DetailGroupe;
+export default GroupDetail;

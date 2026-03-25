@@ -1,25 +1,82 @@
+# Forge de Heros - React
 
-Lancer le projet
-npm install 
+Application React (Vite) pour consulter les personnages et groupes.
 
+## Prerequis
+
+- Node.js 18+
+- npm
+- Une API Symfony fonctionnelle sur `http://127.0.0.1:8000`
+
+## Installation et lancement (React)
+
+1. Installer les dependances:
+
+```bash
+npm install
+```
+
+2. Lancer le front:
+
+```bash
 npm run dev
+```
 
+3. Ouvrir l'URL affichee par Vite (en general `http://127.0.0.1:5173`).
 
+## API attendue
 
+Le front appelle l'API Symfony sur:
 
-# React + Vite
+- `http://127.0.0.1:8000/api/v1/personnages`
+- `http://127.0.0.1:8000/api/v1/personnages/{id}`
+- `http://127.0.0.1:8000/api/v1/parties`
+- `http://127.0.0.1:8000/api/v1/parties/{id}`
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+La base URL est definie dans `src/api/api.js`.
 
-Currently, two official plugins are available:
+## Installation et lancement (Symfony API)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Exemple de commandes (dans le projet backend Symfony):
 
-## React Compiler
+```bash
+composer install
+php bin/console doctrine:migrations:migrate
+symfony server:start
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## CORS (Symfony avec NelmioCorsBundle)
 
-## Expanding the ESLint configuration
+Comme le front et l'API tournent sur des ports differents, il faut autoriser le front dans CORS.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Installer le bundle:
+
+```bash
+composer require nelmio/cors-bundle
+```
+
+2. Configurer `config/packages/nelmio_cors.yaml`:
+
+```yaml
+nelmio_cors:
+	defaults:
+		allow_credentials: false
+		allow_origin: ['http://127.0.0.1:5173', 'http://localhost:5173']
+		allow_headers: ['Content-Type', 'Authorization']
+		allow_methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+		expose_headers: ['Link']
+		max_age: 3600
+	paths:
+		'^/api/':
+			allow_origin: ['http://127.0.0.1:5173', 'http://localhost:5173']
+			allow_headers: ['Content-Type', 'Authorization']
+			allow_methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+			max_age: 3600
+```
+
+## Scripts utiles
+
+- `npm run dev`: lance le serveur de developpement
+- `npm run build`: build de production
+- `npm run preview`: previsualisation du build
+- `npm run lint`: verification ESLint

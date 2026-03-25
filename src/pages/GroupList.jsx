@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getParties } from '../api/api.js';
+import { getGroups } from '../api/api.js';
+import './GroupList.css';
 
-function ListeGroupe() {
+function GroupList() {
   const [groups, setGroups] = useState([]);
   const [onlyAvailable, setOnlyAvailable] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ function ListeGroupe() {
       setError('');
 
       try {
-        const data = await getParties();
+        const data = await getGroups();
         if (active) {
           setGroups(data);
         }
@@ -42,14 +43,14 @@ function ListeGroupe() {
     if (!onlyAvailable) {
       return groups;
     }
-    return groups.filter((p) => p.remainingPlaces > 0);
+    return groups.filter((group) => group.remainingPlaces > 0);
   }, [groups, onlyAvailable]);
 
   return (
     <section>
       <h2>Liste des groupes</h2>
 
-      <label className="toggle">
+      <label className="group-list-toggle">
         <input
           type="checkbox"
           checked={onlyAvailable}
@@ -59,12 +60,12 @@ function ListeGroupe() {
       </label>
 
       {loading ? <p>Chargement...</p> : null}
-      {error ? <p className="error">{error}</p> : null}
+      {error ? <p className="group-list-error">{error}</p> : null}
 
-      <ul className="list">
+      <ul className="group-list-grid">
         {displayedGroups.map((group) => (
-          <li key={group.id} className="card">
-            <Link to={`/groupes/${group.id}`}>
+          <li key={group.id} className="group-list-card">
+            <Link to={`/parties/${group.id}`} className="group-list-link">
               <strong>{group.name}</strong>
             </Link>
             <p>Membres: {group.membersCount}</p>
@@ -78,4 +79,4 @@ function ListeGroupe() {
   );
 }
 
-export default ListeGroupe;
+export default GroupList;

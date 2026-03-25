@@ -4,37 +4,40 @@ body {
   background: #f4f4f4;
 }
 
-.app {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 16px;
+a {
+  color: #1976d2;
+  text-decoration: none;
 }
 
-h1 {
-  margin-top: 0;
+a:hover {
+  text-decoration: underline;
 }
 
-.list {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  gap: 10px;
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #1976d2 !important;
+  box-shadow: 0 0 4px rgba(25, 118, 210, 0.3) !important;
 }
 
-.card {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 12px;
+p {
+  margin: 8px 0;
+  color: #555;
 }
 
-.toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+h2 {
+  color: #333;
+  margin: 20px 0;
 }
 
-.error {
-  color: #b00020;
+h3 {
+  color: #333;
+  margin: 15px 0;
 }
+
+h4 {
+  color: #333;
+  margin: 12px 0;
+}
+
+

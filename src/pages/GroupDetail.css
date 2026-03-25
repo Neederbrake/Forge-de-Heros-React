@@ -1,0 +1,29 @@
+.group-detail-back-link {
+  color: #1976d2;
+  text-decoration: none;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.group-detail-error {
+  color: #b00020;
+  padding: 12px;
+  background-color: #ffebee;
+  border-radius: 4px;
+  margin: 12px 0;
+}
+
+.group-detail-link {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.group-detail-members-list {
+  list-style: none;
+  padding: 0;
+}
+
+.group-detail-member-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
