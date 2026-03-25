@@ -49,31 +49,6 @@ symfony server:start
 
 Comme le front et l'API tournent sur des ports differents, il faut autoriser le front dans CORS.
 
-1. Installer le bundle:
-
-```bash
-composer require nelmio/cors-bundle
-```
-
-2. Configurer `config/packages/nelmio_cors.yaml`:
-
-```yaml
-nelmio_cors:
-	defaults:
-		allow_credentials: false
-		allow_origin: ['http://127.0.0.1:5173', 'http://localhost:5173']
-		allow_headers: ['Content-Type', 'Authorization']
-		allow_methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
-		expose_headers: ['Link']
-		max_age: 3600
-	paths:
-		'^/api/':
-			allow_origin: ['http://127.0.0.1:5173', 'http://localhost:5173']
-			allow_headers: ['Content-Type', 'Authorization']
-			allow_methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
-			max_age: 3600
-```
-
 ## Scripts utiles
 
 - `npm run dev`: lance le serveur de developpement

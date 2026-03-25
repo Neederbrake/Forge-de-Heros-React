@@ -8,8 +8,8 @@ import './App.css';
 
 function App() {
   return (
-    <div style={styles.app}>
-      <h1 style={styles.title}>Forge de Heros</h1>
+    <div className="app-shell">
+      <h1 className="app-title">Forge de Heros</h1>
       <Navigation />
       <Routes>
         <Route path="/" element={<Navigate to="/parties" replace />} />
@@ -21,18 +21,5 @@ function App() {
     </div>
   );
 }
-
-const styles = {
-  app: {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '16px',
-    fontFamily: 'Arial, sans-serif',
-  },
-  title: {
-    marginTop: '0',
-    color: '#333',
-  },
-};
 
 export default App;

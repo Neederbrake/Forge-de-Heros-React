@@ -3,6 +3,26 @@ import { Link, useParams } from 'react-router-dom';
 import { getCharacterById } from '../api/api.js';
 import './CharacterDetail.css';
 
+function CharacterDetailAvatar({ character }) {
+  const candidates = character.avatarCandidates ?? (character.avatar ? [character.avatar] : []);
+  const [avatarIndex, setAvatarIndex] = useState(0);
+
+  if (candidates.length === 0 || avatarIndex >= candidates.length) {
+    return null;
+  }
+
+  return (
+    <img
+      src={candidates[avatarIndex]}
+      alt={character.name}
+      className="character-detail-avatar"
+      onError={() => {
+        setAvatarIndex((current) => (current + 1 < candidates.length ? current + 1 : candidates.length));
+      }}
+    />
+  );
+}
+
 function CharacterDetail() {
   const { id } = useParams();
   const [character, setCharacter] = useState(null);
@@ -65,9 +85,7 @@ function CharacterDetail() {
       {character && !loading ? (
         <div className="character-detail-container">
           <div className="character-detail-header">
-            {character.avatar && (
-              <img src={character.avatar} alt={character.name} className="character-detail-avatar" />
-            )}
+            <CharacterDetailAvatar character={character} />
             <div className="character-detail-info">
               <h3 className="character-detail-name">{character.name}</h3>
               <p className="character-detail-level">Niveau {character.level}</p>

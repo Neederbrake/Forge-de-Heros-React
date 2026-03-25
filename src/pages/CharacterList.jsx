@@ -3,6 +3,26 @@ import { Link } from 'react-router-dom';
 import { getCharacters } from '../api/api.js';
 import './CharacterList.css';
 
+function CharacterCardAvatar({ character }) {
+  const candidates = character.avatarCandidates ?? (character.avatar ? [character.avatar] : []);
+  const [avatarIndex, setAvatarIndex] = useState(0);
+
+  if (candidates.length === 0 || avatarIndex >= candidates.length) {
+    return null;
+  }
+
+  return (
+    <img
+      src={candidates[avatarIndex]}
+      alt={character.name}
+      className="character-list-avatar"
+      onError={() => {
+        setAvatarIndex((current) => (current + 1 < candidates.length ? current + 1 : candidates.length));
+      }}
+    />
+  );
+}
+
 function CharacterList() {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -128,7 +148,7 @@ function CharacterList() {
       <ul className="character-list-grid">
         {displayedCharacters.map((char) => (
           <li key={char.id} className="character-list-card">
-            {char.avatar && <img src={char.avatar} alt={char.name} className="character-list-avatar" />}
+            <CharacterCardAvatar character={char} />
             <Link to={`/characters/${char.id}`} className="character-list-link">
               <strong>{char.name}</strong>
             </Link>

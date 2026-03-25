@@ -1,0 +1,26 @@
+.main-nav {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #d5dfe9;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(29, 48, 80, 0.08);
+  backdrop-filter: blur(4px);
+}
+
+.main-nav-link {
+  color: #1a3b63;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.main-nav-link:hover {
+  background-color: #eaf2fb;
+  color: #0d2a4a;
+  text-decoration: none;
+}
