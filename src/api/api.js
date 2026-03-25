@@ -51,14 +51,20 @@ async function fetchJsonWithFallback(paths) {
 }
 
 function normalizeGroup(rawGroup) {
-  const members = rawGroup.membres ?? rawGroup.members ?? [];
-  const maxPlaces = rawGroup.places_max ?? rawGroup.max_places ?? rawGroup.nb_places ?? 0;
-  const membersCount = rawGroup.nb_membres ?? rawGroup.members_count ?? members.length ?? 0;
+  const members = pickFirst(rawGroup, ['membres', 'members', 'characters', 'personnages'], []);
+  const maxPlaces = toNumber(
+    pickFirst(rawGroup, ['maxSize', 'MaxSize', 'places_max', 'max_places', 'nb_places'], 0),
+    0,
+  );
+  const membersCount = toNumber(
+    pickFirst(rawGroup, ['membersCount', 'nb_membres', 'members_count'], members.length ?? 0),
+    members.length ?? 0,
+  );
 
   return {
-    id: rawGroup.id,
-    name: rawGroup.nom ?? rawGroup.name ?? 'Groupe sans nom',
-    description: rawGroup.description ?? 'Aucune description',
+    id: pickFirst(rawGroup, ['id', 'Id'], null),
+    name: pickFirst(rawGroup, ['nom', 'name', 'Name'], 'Groupe sans nom'),
+    description: pickFirst(rawGroup, ['description', 'Description'], 'Aucune description'),
     maxPlaces,
     membersCount,
     remainingPlaces: Math.max(maxPlaces - membersCount, 0),
@@ -67,23 +73,13 @@ function normalizeGroup(rawGroup) {
 }
 
 export async function getGroups() {
-  const res = await fetch(`${API_BASE}/parties`);
-  if (!res.ok) {
-    throw new Error('Erreur de chargement des groupes');
-  }
-
-  const data = await res.json();
+  const data = await fetchJsonWithFallback(['/parties', '/groups']);
   const list = Array.isArray(data) ? data : data.results ?? [];
   return list.map(normalizeGroup);
 }
 
 export async function getGroupById(id) {
-  const res = await fetch(`${API_BASE}/parties/${id}`);
-  if (!res.ok) {
-    throw new Error('Erreur de chargement du detail groupe');
-  }
-
-  const data = await res.json();
+  const data = await fetchJsonWithFallback([`/parties/${id}`, `/groups/${id}`]);
   return normalizeGroup(data);
 }
 
