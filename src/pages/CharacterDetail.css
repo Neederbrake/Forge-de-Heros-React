@@ -1,20 +1,22 @@
 .character-detail-back-link {
-  color: #1976d2;
+  color: var(--primary-600);
   text-decoration: none;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   display: inline-block;
+  font-weight: 700;
 }
 
 .character-detail-error {
-  color: #b00020;
+  color: var(--danger-700);
   padding: 12px;
-  background-color: #ffebee;
-  border-radius: 4px;
+  background-color: var(--danger-100);
+  border-radius: 10px;
+  border: 1px solid #f1bbb7;
   margin: 12px 0;
 }
 
 .character-detail-container {
-  padding: 20px;
+  padding: 6px 4px;
 }
 
 .character-detail-header {
@@ -22,15 +24,16 @@
   gap: 30px;
   margin-bottom: 40px;
   padding-bottom: 20px;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid #e6edf6;
 }
 
 .character-detail-avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 10px;
+  width: 168px;
+  height: 168px;
+  border-radius: 14px;
   object-fit: cover;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 20px rgba(27, 40, 66, 0.2);
 }
 
 .character-detail-info {
@@ -40,12 +43,12 @@
 .character-detail-name {
   margin: 0 0 10px;
   font-size: 2em;
-  color: #333;
+  color: var(--ink-900);
 }
 
 .character-detail-level {
   font-size: 1.2em;
-  color: #666;
+  color: var(--ink-700);
   margin: 5px 0 15px;
   font-weight: 700;
 }
@@ -59,27 +62,27 @@
 
 .character-detail-class-tag {
   padding: 5px 12px;
-  border-radius: 20px;
+  border-radius: 999px;
   font-size: 0.9em;
   font-weight: 600;
-  background-color: #e3f2fd;
-  color: #1976d2;
-  border: 1px solid #1976d2;
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+  border: 1px solid #bfd5ef;
 }
 
 .character-detail-race-tag {
   padding: 5px 12px;
-  border-radius: 20px;
+  border-radius: 999px;
   font-size: 0.9em;
   font-weight: 600;
-  background-color: #f3e5f5;
-  color: #7b1fa2;
-  border: 1px solid #7b1fa2;
+  background-color: var(--accent-100);
+  color: var(--accent-600);
+  border: 1px solid #f6ccba;
 }
 
 .character-detail-description {
   margin-top: 15px;
-  color: #555;
+  color: var(--ink-700);
   line-height: 1.6;
   font-style: italic;
 }
@@ -95,20 +98,20 @@
 .character-detail-groups-title {
   margin-bottom: 20px;
   font-size: 1.3em;
-  color: #333;
+  color: var(--ink-900);
   padding-left: 10px;
 }
 
 .character-detail-stats-title {
-  border-left: 4px solid #1976d2;
+  border-left: 4px solid var(--primary-600);
 }
 
 .character-detail-skills-title {
-  border-left: 4px solid #ff9800;
+  border-left: 4px solid var(--accent-600);
 }
 
 .character-detail-groups-title {
-  border-left: 4px solid #9c27b0;
+  border-left: 4px solid #2d6b4f;
 }
 
 .character-detail-stats-grid {
@@ -125,23 +128,23 @@
 
 .character-detail-stat-label {
   font-weight: 600;
-  color: #333;
+  color: var(--ink-700);
   font-size: 0.95em;
 }
 
 .character-detail-progress-bar {
   width: 100%;
-  height: 30px;
-  background-color: #e0e0e0;
+  height: 28px;
+  background-color: #e8edf5;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
   position: relative;
 }
 
 .character-detail-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4caf50, #45a049);
+  background: linear-gradient(90deg, #2f6fae, #4f8ac5);
   transition: width 0.3s ease;
   border-radius: 15px;
   min-width: 2%;
@@ -149,7 +152,7 @@
 
 .character-detail-stat-value {
   font-size: 0.85em;
-  color: #666;
+  color: var(--ink-500);
   text-align: right;
 }
 
@@ -163,22 +166,22 @@
 }
 
 .character-detail-skill-item {
-  background-color: #fff8f0;
+  background-color: #fff7f2;
   padding: 15px;
-  border-radius: 8px;
-  border-left: 4px solid #ff9800;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  border: 1px solid #f6d6c8;
+  border-left: 4px solid var(--accent-600);
 }
 
 .character-detail-skill-name {
-  color: #ff9800;
+  color: var(--accent-600);
   display: block;
   margin-bottom: 8px;
 }
 
 .character-detail-skill-desc {
   margin: 0;
-  color: #666;
+  color: var(--ink-700);
   font-size: 0.9em;
   line-height: 1.5;
 }
@@ -193,15 +196,16 @@
 }
 
 .character-detail-group-item {
-  background-color: #f3e5f5;
+  background-color: #eaf5ef;
   padding: 12px 15px;
-  border-radius: 8px;
-  border-left: 4px solid #9c27b0;
+  border-radius: 12px;
+  border: 1px solid #c9e3d4;
+  border-left: 4px solid #2d6b4f;
   transition: all 0.3s ease;
 }
 
 .character-detail-group-link {
-  color: #7b1fa2;
+  color: #2d6b4f;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;

@@ -1,29 +1,33 @@
 .group-detail-back-link {
-  color: #1976d2;
+  color: var(--primary-600);
   text-decoration: none;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   display: inline-block;
+  font-weight: 700;
 }
 
 .group-detail-error {
-  color: #b00020;
+  color: var(--danger-700);
   padding: 12px;
-  background-color: #ffebee;
-  border-radius: 4px;
+  background-color: var(--danger-100);
+  border-radius: 10px;
+  border: 1px solid #f1bbb7;
   margin: 12px 0;
 }
 
 .group-detail-link {
-  color: #1976d2;
+  color: var(--primary-600);
   text-decoration: none;
+  font-weight: 700;
 }
 
 .group-detail-members-list {
   list-style: none;
   padding: 0;
+  margin: 10px 0 0;
 }
 
 .group-detail-member-item {
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
+  padding: 11px 0;
+  border-bottom: 1px solid #e7edf5;
 }
